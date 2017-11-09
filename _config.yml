@@ -13,7 +13,7 @@ future: true
 name: Pedro Mendes
 tagline: Helpfull Programmer
 about-description: >
- I'm a CS student at Universidade do Minho. I know Haskell, C and Java.
+ I'm a CS student at Universidade do Minho. I know <b>C</b>, java and haskell.
 pic: myface.jpg  # Place a 200x200 picture inside /assets/img/ folder and provide the name of the file below
 
 # Contact links
