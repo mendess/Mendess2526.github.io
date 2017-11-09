@@ -1,0 +1,53 @@
+title: Pedro Mendes
+description: > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+permalink: ':title/'
+blog_theme: dark # Or use dark
+
+# Profile information
+name: Pedro Mendes
+tagline: Helpfull Programmer
+about-description: >
+ I'm a CS student at Universidade do Minho. I know Haskell, C and Java.
+pic: myface.jpg  # Place a 200x200 picture inside /assets/img/ folder and provide the name of the file below
+
+# Contact links
+email: pedro.mendes.26@gmail.com # Add your Email address
+phone:  926546003 # Add your Phone number
+website: Mendess2526.github.io # Add your website, do not add http://
+linkedin: pedro-mendes-248 # Add your Linkedin handle
+github: Mendess2526 # Add your Github handle
+twitter: Mendess2526 # Add your Twitter handle
+
+# Tracker
+analytics:
+
+# Comments
+discus-identifier: # Add your Disqus identifier
+
+# Important settings
+assets:
+  sources:
+    - assets/fonts
+    - assets/img
+    - assets/js
+    - assets/stylesheets
+
+# Build settings
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
+gems:
+  - jekyll-feed
+  - jekyll-assets
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+include: [_pages]
