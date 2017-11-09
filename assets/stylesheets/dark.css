@@ -830,6 +830,19 @@ blockquote {
         opacity: .8;
         transform: translateX(3px); }
 
+.div-quote{
+  color: #908e8e;
+  margin: 2rem 5rem; 
+  font-family: "volkhov",serif; }
+  .div-quote .quote {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0.2rem; }
+  .div-quote .quoting {
+    text-align: right;
+    font-size: 0.9rem;
+    margin: 0.2rem; }
+
 .post-box {
   margin: 0 1rem;
   padding: 2rem;

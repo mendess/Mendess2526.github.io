@@ -13,11 +13,15 @@ future: true
 name: Pedro Mendes
 tagline: Helpfull Programmer
 about-description: >
-   I'm a 20yo computer science student </br>
+   I'm a 20 year old computer science student </br>
    I study at Universidade do Minho. </br>
-   I'm can speak <b>C</b>, Java and Haskell. </br>
-   I like teaching what I love.
+   I can speak <b>C</b>, Java and Haskell. </br>
+   I like teaching what I love. </br>
+   </br>
+   </br>
 pic: myface.jpg  # 200x200 
+footer-quote: # add a quote to the footer of the page
+quoting: # add who is being quoted
 
 # Contact links
 email: pedro.mendes.26@gmail.com # Add your Email address
