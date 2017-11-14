@@ -5,7 +5,7 @@ function projectHtml (name,description) {
 	var html = "";
 	html+="\t<li class=\"post-item\">";
 	html+="\t\t<h2 class=\"post-header\">";
-    html+="\t\t\t<a class=\"post-link\" href=\""+name+"\">"+name+"<i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i></a>";
+    html+="\t\t\t<a class=\"post-link\" href=\"/"+name+"\">"+name+"<i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i></a>";
     html+="\t\t</h2>"
     html+="\t\t<p class=\"post-description\">"+description+"</p>"
     html+="\t</li>"
