@@ -32,7 +32,7 @@ function printProjects () {
 	console.log("tou no printProjects");
 	var responseObj = JSON.parse(this.responseText);
 	for (var i = 0; i < responseObj.length; i++) {
-		if(project.name!="Mendess2526.github.io"){
+		if(responseObj[i].name!="Mendess2526.github.io"){
 			printProject(responseObj[i],responseObj[i].has_pages);
 		}
 	}
