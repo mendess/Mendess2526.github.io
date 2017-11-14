@@ -15,26 +15,25 @@ function projectHtml (name,description,link) {
 	return html;
 }
 
-function printProject (project,element,has_pages) {
+function printProject (project,has_pages) {
 	var link;
+	var element;
 	if(has_pages){
 		link = "/"+project.name;
+		element = "main-project-list";
 	}else{
 		link = "https://github.com/Mendess2526/"+project.name;
+		element = "secondary-project-list";
 	}
-	if(project.name!="Mendess2526.github.io"){
-		document.getElementById(element).innerHTML += projectHtml(project.name,project.description,link);  
-	}
+	document.getElementById(element).innerHTML += projectHtml(project.name,project.description,link);  
 }
 
 function printProjects () {
 	console.log("tou no printProjects");
 	var responseObj = JSON.parse(this.responseText);
 	for (var i = 0; i < responseObj.length; i++) {
-		if(responseObj[i].has_pages){
-			printProject(responseObj[i],"main-project-list",responseObj[i].has_pages);
-		}else{
-			printProject(responseObj[i],"secondary-project-list",responseObj[i].has_pages);
+		if(project.name!="Mendess2526.github.io"){
+			printProject(responseObj[i],responseObj[i].has_pages);
 		}
 	}
 }
