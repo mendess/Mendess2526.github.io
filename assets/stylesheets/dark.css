@@ -871,7 +871,7 @@ blockquote {
 
 .project-sort {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   padding: 0rem 1rem;
   margin-bottom: 0rem; }
   .project-sort ul {
@@ -884,10 +884,14 @@ blockquote {
       text-decoration: none;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 1rem 1.5rem;
+      padding: 0.5rem 1.5rem;
       color: #ffffff;
       width: 8rem;
       text-align: center; }
+      .project-sort ul li p{
+        padding: 0.5rem 0rem;
+        margin: 0rem;
+      }
       .project-sort ul li button {
         transition: ease-in-out .3s;
         background-color: transparent;
@@ -898,7 +902,7 @@ blockquote {
         text-decoration: none;
         font-weight: 700;
         text-transform: uppercase;
-        padding: 1rem 1.5rem;
+        padding: 0.5rem 1.5rem;
         width: 8rem;
         text-align: center; }
         .project-sort ul li button:hover {
