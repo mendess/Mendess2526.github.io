@@ -7,17 +7,17 @@ permalink: /projects/
 <div class="page-heading">
   <h2 class="page-title">Projects <a class="rss-subscribe" href="{{ "/projects" | relative_url }}"><i class="fa fa-rss" aria-hidden="true"></i></a></h2>
 </div>
-
-<h1>Main Projects</h1>
-<div class="post-box">
-  <ul class="post-list" id="main-project-list">
-
+<div class="project-sort">
+  <ul>
+    <li><p>Order by:</p></li>
+    <li><button id="bStars"  >Stars  </button></li>
+    <li><button id="bCommits">Commits</button></li>
+    <li><button id="bDefault">Default</button></li>
+<!--    
+    <li><p class="clickable" name="bDefault">Default</p></li>
+    <li><p class="clickable" name="bStars"  >Stars  </p></li>
+    <li><p class="clickable" name="bCommits">Commits</p></li>
+-->
   </ul>
-
 </div>
-<h1>Other Projects</h1>
-<div class="post-box">
-  <ul class="post-list" id="secondary-project-list">
-
-  </ul>
-</div>
+<div id="project-box"></div>

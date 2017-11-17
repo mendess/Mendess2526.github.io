@@ -755,6 +755,7 @@ blockquote {
         padding: 1rem 1.5rem;
         color: #ffffff;
         transition: ease-in-out .3s;
+        text-align: center;
         width: 8rem; }
         .header ul li a:hover {
           background-color: #F0F564;
@@ -768,7 +769,7 @@ blockquote {
   width: 100%; }
 
 .page-heading {
-  padding-bottom: 3rem; }
+  padding-bottom: 2rem; }
   .page-heading .page-title {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
@@ -781,8 +782,8 @@ blockquote {
   margin: 0 1rem;
   padding: 2rem;
   background-color: #272727;
-  border-top: 3px solid #F0F564;
-  border-bottom: 3px solid #F0F564;
+  /*border-top: 3px solid #F0F564;
+  border-bottom: 3px solid #F0F564;*/
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); }
   .about .container-face {
     margin-bottom: 1rem;
@@ -868,6 +869,42 @@ blockquote {
           transform: translateX(7px);
           transition: all .2s; }
 
+.project-sort {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+  margin-bottom: 0rem; }
+  .project-sort ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .project-sort ul li {
+      float: left; 
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      color: #ffffff;
+      width: 8rem;
+      text-align: center; }
+      .project-sort ul li button {
+        transition: ease-in-out .3s;
+        background-color: transparent;
+        color: white;
+        border: none;
+        float: left; 
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 1rem 1.5rem;
+        width: 8rem;
+        text-align: center; }
+        .project-sort ul li button:hover {
+          background-color: #F0F564;
+          color: #181818; }  
+}
 .rss-subscribe {
   color: #6F6F6F;
   transition: all .3s; }
