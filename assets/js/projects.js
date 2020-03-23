@@ -9,7 +9,7 @@ function loadStuff () {
 
 function loadProjects (mode) {
   let request = new XMLHttpRequest();
-  request.open('get','https://api.github.com/users/Mendess2526/repos', true);
+  request.open('get','https://api.github.com/users/mendess/repos', true);
   request.send();
   request.onreadystatechange = function(){
     if (request.readyState === 4 && (request.status === 200 || request.status === 304)){
@@ -65,11 +65,11 @@ function listProjects (responseText,mode) {
 
 function setNumCommits(name,repo) {
   let request = new XMLHttpRequest();
-  request.open('get','https://api.github.com/repos/Mendess2526/'+name+'/contributors?anon=true');
+  request.open('get','https://api.github.com/repos/mendess/'+name+'/contributors?anon=true');
   request.send();
   request.onreadystatechange = function(){
     if (request.readyState === 4 && (request.status === 200 || request.status === 304)){
-      if(name!="Mendess2526.github.io"){
+      if(name!="mendess.github.io"){
         let n = countCommits(JSON.parse(request.responseText));
         objectsData[repo].numCommits = n;
         document.getElementById('commits'+name).innerHTML = " #of commits: "+n;
@@ -81,7 +81,7 @@ function setNumCommits(name,repo) {
 
 function setLastCommitDate (name,repo) {
   let request = new XMLHttpRequest();
-  request.open('get','https://api.github.com/repos/Mendess2526/'+name+'/commits');
+  request.open('get','https://api.github.com/repos/mendess/'+name+'/commits');
   request.send();
   request.onreadystatechange = function(){
     if (request.readyState === 4 && (request.status === 200 || request.status === 304)){
@@ -103,7 +103,7 @@ function setLastCommitDate (name,repo) {
   ul.classList.add('post-list');
 
   for(let i = 0; i < objectsData.length; i++){
-    if(objectsData[i].name!="Mendess2526.github.io"){
+    if(objectsData[i].name!="mendess.github.io"){
       let li = buildRepoHtml(objectsData[i]);
       ul.appendChild(li);
     }
@@ -136,7 +136,7 @@ function printProjects_split () {
   projBoxDiv.appendChild(secondH2);
   projBoxDiv.appendChild(divSecond);
   for(let i = 0; i < objectsData.length; i++){
-    if(objectsData[i].name!="Mendess2526.github.io"){
+    if(objectsData[i].name!="mendess.github.io"){
       let li = buildRepoHtml(objectsData[i]);
       if(objectsData[i].has_pages){
         ulMain.appendChild(li);
