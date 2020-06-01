@@ -19,7 +19,7 @@ taxonomies = [
     {name = "tags", rss = true, paginate_by=5},
 ]
 
-title = "Journal"
+title = "~"
 
 [extra]
 # Put all your custom variables here
@@ -27,4 +27,8 @@ author = "mendess"
 clean_blog_social = [
     {url = "https://github.com/mendess", icon="fab fa-github"},
     {url = "$BASE_URL/rss.xml", icon="fas fa-rss"},
+]
+clean_blog_menu = [
+    {url = "$BASE_URL/projects", name = "Projects"},
+    {url = "$BASE_URL/about", name = "About"},
 ]

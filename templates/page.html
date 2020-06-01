@@ -3,16 +3,17 @@
 {% block header %}
 <!-- Page Header -->
 {% if page.extra.background %}
-<header class="masthead" style="background-image: url('{{ get_url(path="img/" ~ page.extra.background)}}')">
+<header class="masthead" style="background-image: url('{{ get_url(path="img/" ~ page.extra.background) }}')">
 {% else %}
-<header class="masthead" style="background-image: url('{{ get_url(path="/img/It_was_working_in_my_head.jpg")}}')">
+<header class="masthead" style="background-image: url('{{ get_url(path="/img/It_was_working_in_my_head.jpg") }}')">
 {% endif %}
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-heading">
-          {{ post_macros::page_header(page=page) }}
+          <h1>{{page.title}}</h1>
+          <span class="meta">{{ page.date | date(format="%e %B %Y") }} </span>
         </div>
       </div>
     </div>
