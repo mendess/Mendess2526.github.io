@@ -2,9 +2,14 @@
 title = "Variance"
 date = 2019-01-07
 
+description = "Variance and it's invariance"
+
 [taxonomies]
 categories = ["Typesystems"]
 tags = ["rust", "c", "c++", "java"]
+
+[extra]
+background = "book.jpg"
 +++
 
 # Variance

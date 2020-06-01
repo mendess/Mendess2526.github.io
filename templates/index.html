@@ -55,7 +55,7 @@
 
   <!-- Page Header -->
   {% block header %}
-  <header class="masthead" style="background-image: url('{{ get_url(path="/img/home-bg.jpg")}}')">
+  <header class="masthead" style="background-image: url('{{ get_url(path="/img/home-bg.png")}}')">
     <div class="overlay">
     </div>
     <div class="container">
@@ -119,8 +119,11 @@
             </li>
             {% endfor %}
           </ul>
-          <p class="copyright text-muted">{% block copyright %}Copyright &copy; Our Website
-            2019{% endblock copyright %}</p>
+          <p class="copyright text-muted">
+              {% block copyright %}
+              Copyright &copy; Our Website 2019
+              {% endblock copyright %}
+          </p>
         </div>
       </div>
     </div>
