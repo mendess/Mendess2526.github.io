@@ -9,7 +9,10 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                  persist-credentials: false
             - name: Checkout submodules
               uses: textbook/git-checkout-submodule-action@master
             - name: Download Zola
@@ -23,3 +26,9 @@ jobs:
                 tar xf zola*tar
             - name: Build
               run: ./zola build
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                  BRANCH: gh-pages
+                  FOLDER: public
