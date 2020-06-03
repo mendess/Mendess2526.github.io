@@ -124,8 +124,8 @@ fetch these.</p>
 </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:now = </span><span style="color:#f07178;">strftime</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the current date
 </span></code></pre>
 <p>With every thing ready it was just a matter of adapting the original find and
-replace, to use the correct the correct start and end lines, <code>l:st</code> and <code>l:end</code>,
-as well as the correct pattern.</p>
+replace, to use the correct start and end lines, <code>l:st</code> and <code>l:end</code>, as well as
+the correct pattern.</p>
 <pre style="background-color:#0f1419;">
 <code><span style="color:#bfbab0;">keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^title =.*/title = &quot;&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:title </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;&quot;/&#39;</span><span style="color:#bfbab0;">
 keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^date =.*/date = &#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:now </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;/&#39;
