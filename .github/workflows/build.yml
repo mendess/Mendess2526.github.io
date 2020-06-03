@@ -27,7 +27,8 @@ jobs:
             - name: Build
               run: |
                   ./zola build
-                  rm -rf themes/clean-blog/
+            - name: Deinit submodules
+              run: git submodule deinit --all
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
