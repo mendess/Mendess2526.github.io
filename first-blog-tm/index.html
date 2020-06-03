@@ -57,7 +57,7 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-heading">
           <h1>First Post ™</h1>
-          <span class="meta"> 2 June 2020 </span>
+          <span class="meta"> 3 June 2020 </span>
         </div>
       </div>
     </div>
@@ -71,8 +71,106 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <h1 id="first-post">First Post</h1>
+        <h1 id="first-post-tm">First Post ™</h1>
 <p>Test post don't upvote.</p>
+<h2 id="vim-bros">Vim bros</h2>
+<p>One thing I need to do for every post is put a title and a date on it in the
+<em>frontmatter</em>.</p>
+<p>That's annoying and easy to forget. Also if I update the post I need to change
+these too.</p>
+<p>Right now it has to look like this:</p>
+<pre style="background-color:#0f1419;">
+<code><span style="color:#bfbab0;">+++
+title = &quot;First Post ™&quot;
+date = 2020-06-03
+[extra]
+background = &quot;linux.png&quot;
++++
+</span></code></pre>
+<p>The background image has to be put there by hand since I have no way to deduce
+the image's name, if there is one from the post.</p>
+<p>So I went searching and found <a href="https://vim.fandom.com/wiki/Insert_current_date_or_time">this</a>, under &quot;Automatically update
+timestamps&quot;.</p>
+<pre style="background-color:#0f1419;">
+<code><span style="font-style:italic;color:#5c6773;">&quot; If buffer modified, update any &#39;Last modified: &#39; in the first 20 lines.
+&quot; &#39;Last modified: &#39; can have up to 10 characters before (they are retained).
+&quot; Restores cursor and window position using save_cursor variable.
+</span><span style="color:#ff7733;">function</span><span style="color:#bfbab0;">! </span><span style="color:#ffb454;">LastModified</span><span style="color:#bfbab0;">()
+  </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">&amp;modified
+    </span><span style="color:#f07178;">let</span><span style="color:#bfbab0;"> save_cursor = </span><span style="color:#f07178;">getpos</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;.&quot;</span><span style="color:#bfbab0;">)
+    </span><span style="color:#f07178;">let</span><span style="color:#bfbab0;"> n = </span><span style="color:#f07178;">min</span><span style="color:#bfbab0;">([</span><span style="color:#f29718;">20</span><span style="color:#bfbab0;">, </span><span style="color:#f07178;">line</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;$&quot;</span><span style="color:#bfbab0;">)])
+    keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#c2d94c;">&#39;1,&#39; </span><span style="color:#ff7733;">.</span><span style="color:#bfbab0;"> n </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s#^\(.\{,10}Last modified: \).*#\1&#39; </span><span style="color:#ff7733;">.
+          \ </span><span style="color:#f07178;">strftime</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;%a %b %d, %Y  %I:%M%p&#39;</span><span style="color:#bfbab0;">) </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;#e&#39;</span><span style="color:#bfbab0;">
+    call </span><span style="color:#f07178;">histdel</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;search&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#f29718;">-1</span><span style="color:#bfbab0;">)
+    call </span><span style="color:#f07178;">setpos</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;.&#39;</span><span style="color:#bfbab0;">, save_cursor)
+  </span><span style="color:#ff7733;">endif
+endfun
+</span><span style="color:#f07178;">autocmd</span><span style="color:#bfbab0;"> BufWritePre </span><span style="color:#ff7733;">*</span><span style="color:#bfbab0;"> call </span><span style="color:#f07178;">LastModified</span><span style="color:#bfbab0;">()
+</span></code></pre>
+<p>Which is fine and all but it's not good enough just yet, first it makes a guess
+the 20 is the number of lines that matter, in my case there is a better
+alternative, because the zone where this matters in inside <code>+++</code> I can just
+fetch these.</p>
+<pre style="background-color:#0f1419;">
+<code><span style="color:#bfbab0;">call </span><span style="color:#f07178;">cursor</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">, </span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Put the cursor at the top
+</span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:st = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&#39;c&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Find the line where the first +++ appears
+</span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:end = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Find the second +++
+</span></code></pre>
+<p>The I just needed to get the current title and current date.</p>
+<pre style="background-color:#0f1419;">
+<code><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the title line
+</span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">getline</span><span style="color:#bfbab0;">(l:title_line) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the text at that line
+</span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">substitute</span><span style="color:#bfbab0;">(l:title, </span><span style="color:#c2d94c;">&quot;^#[ ]*&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Remove the # at the start
+</span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:now = </span><span style="color:#f07178;">strftime</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the current date
+</span></code></pre>
+<p>With every thing ready it was just a matter of adapting the original find and
+replace.</p>
+<pre style="background-color:#0f1419;">
+<code><span style="color:#bfbab0;">keepjumps </span><span style="color:#f07178;">exe</span><span style="color:#bfbab0;"> st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. end . </span><span style="color:#c2d94c;">&#39;s/^title =.*/title = &quot;&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:title </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;&quot;/&#39;</span><span style="color:#bfbab0;">
+keepjumps </span><span style="color:#f07178;">exe</span><span style="color:#bfbab0;"> st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. end . </span><span style="color:#c2d94c;">&#39;s/^date =.*/date = &#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:now </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;/&#39;
+</span></code></pre>
+<p>The only other thing left to do was handle the obvious error. There might not be
+any <code>+++</code> yet when I save, if I forget to add them (which I will) and for that I
+just had to insert a check and create the boiler plate.</p>
+<pre style="background-color:#0f1419;">
+<code><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">== </span><span style="color:#f29718;">0</span><span style="color:#bfbab0;">
+call </span><span style="color:#f07178;">append</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">0</span><span style="color:#bfbab0;">, [</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">,
+            </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;title =&#39;</span><span style="color:#bfbab0;">,
+            </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;date = &#39;</span><span style="color:#bfbab0;">,
+            </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#[extra]&#39;</span><span style="color:#bfbab0;">,
+            </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#background = &quot;&quot;&#39;</span><span style="color:#bfbab0;">,
+            </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">])
+</span><span style="color:#ff7733;">endif
+</span></code></pre>
+<p>The final code looks like this:</p>
+<pre style="background-color:#0f1419;">
+<code><span style="color:#ff7733;">function</span><span style="color:#bfbab0;">! </span><span style="color:#ffb454;">BlogPostModified</span><span style="color:#bfbab0;">()
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">&amp;modified
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:save_cursor = </span><span style="color:#f07178;">getpos</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;.&quot;</span><span style="color:#bfbab0;">)
+        call </span><span style="color:#f07178;">cursor</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">, </span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:st = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&#39;c&#39;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">== </span><span style="color:#f29718;">0</span><span style="color:#bfbab0;">
+            call </span><span style="color:#f07178;">append</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">0</span><span style="color:#bfbab0;">, [</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">,
+                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;title =&#39;</span><span style="color:#bfbab0;">,
+                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;date = &#39;</span><span style="color:#bfbab0;">,
+                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#[extra]&#39;</span><span style="color:#bfbab0;">,
+                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#background = &quot;&quot;&#39;</span><span style="color:#bfbab0;">,
+                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">])
+        </span><span style="color:#ff7733;">endif
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:end = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">getline</span><span style="color:#bfbab0;">(l:title_line)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">substitute</span><span style="color:#bfbab0;">(l:title, </span><span style="color:#c2d94c;">&quot;^#[ ]*&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:now = </span><span style="color:#f07178;">strftime</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span style="color:#bfbab0;">)
+        keepjumps </span><span style="color:#f07178;">exe</span><span style="color:#bfbab0;"> st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. end . </span><span style="color:#c2d94c;">&#39;s/^title =.*/title = &quot;&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:title </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;&quot;/&#39;</span><span style="color:#bfbab0;">
+        keepjumps </span><span style="color:#f07178;">exe</span><span style="color:#bfbab0;"> st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. end . </span><span style="color:#c2d94c;">&#39;s/^date =.*/date = &#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:now </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;/&#39;</span><span style="color:#bfbab0;">
+        call </span><span style="color:#f07178;">histdel</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;search&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#f29718;">-1</span><span style="color:#bfbab0;">)
+        call </span><span style="color:#f07178;">setpos</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;.&#39;</span><span style="color:#bfbab0;">, save_cursor)
+    </span><span style="color:#ff7733;">endif
+endfun
+</span><span style="color:#f07178;">autocmd</span><span style="color:#bfbab0;"> BufWritePre content/</span><span style="color:#ff7733;">*.</span><span style="color:#bfbab0;">md call </span><span style="color:#f07178;">BlogPostModified</span><span style="color:#bfbab0;">()
+</span></code></pre>
+<p>Done and I never have to worry about that in my life. <em>Until the script fails...</em></p>
 
         
       </div>
