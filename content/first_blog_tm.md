@@ -71,8 +71,8 @@ let l:now = strftime('%F') " Get the current date
 ```
 
 With every thing ready it was just a matter of adapting the original find and
-replace, to use the correct the correct start and end lines, `l:st` and `l:end`,
-as well as the correct pattern.
+replace, to use the correct start and end lines, `l:st` and `l:end`, as well as
+the correct pattern.
 ```vim
 keepjumps exe l:st . ',' . l:end . 's/^title =.*/title = "' . l:title . '"/'
 keepjumps exe l:st . ',' . l:end . 's/^date =.*/date = ' . l:now . '/'
