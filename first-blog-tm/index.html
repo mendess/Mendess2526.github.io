@@ -132,7 +132,9 @@ keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#bfb
 </span></code></pre>
 <p>The only other thing left to do was handle the obvious error. There might not be
 any <code>+++</code> yet when I save, if I forget to add them (which I will) and for that I
-just had to insert a check and create the boiler plate.</p>
+just had to insert a check and create the boiler plate. This also gets around
+the problem of there being random <code>+++</code> sequences in the article itself, like
+this one does.</p>
 <pre style="background-color:#0f1419;">
 <code><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">!= </span><span style="color:#f29718;">1 </span><span style="font-style:italic;color:#5c6773;">&quot; front matter must be at line 1
 </span><span style="color:#bfbab0;">    call </span><span style="color:#f07178;">append</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">0</span><span style="color:#bfbab0;">, [</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">,
@@ -153,6 +155,10 @@ just had to insert a check and create the boiler plate.</p>
         call </span><span style="color:#f07178;">cursor</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">, </span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
         </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:st = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&#39;c&#39;</span><span style="color:#bfbab0;">)
         </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:end = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">getline</span><span style="color:#bfbab0;">(l:title_line)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">substitute</span><span style="color:#bfbab0;">(l:title, </span><span style="color:#c2d94c;">&quot;^#[ ]*&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:now = </span><span style="color:#f07178;">strftime</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span style="color:#bfbab0;">)
         </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">!= </span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">
             call </span><span style="color:#f07178;">append</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">0</span><span style="color:#bfbab0;">, [</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">,
                         </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;title =&#39;</span><span style="color:#bfbab0;">,
@@ -162,11 +168,7 @@ just had to insert a check and create the boiler plate.</p>
                         </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">])
             </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:st = </span><span style="color:#f29718;">1
             </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:end = </span><span style="color:#f29718;">6
-        </span><span style="color:#ff7733;">endif
-        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&#39;n&#39;</span><span style="color:#bfbab0;">)
-        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">getline</span><span style="color:#bfbab0;">(l:title_line)
-        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">substitute</span><span style="color:#bfbab0;">(l:title, </span><span style="color:#c2d94c;">&quot;^#[ ]*&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0;">)
-        </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:now = </span><span style="color:#f07178;">strftime</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span style="color:#bfbab0;">)
+        </span><span style="color:#ff7733;">endif</span><span style="color:#bfbab0;">
         keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^title =.*/title = &quot;&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:title </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;&quot;/&#39;</span><span style="color:#bfbab0;">
         keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#bfbab0;">l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^date =.*/date = &#39; </span><span style="color:#ff7733;">. </span><span style="color:#bfbab0;">l:now </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;/&#39;</span><span style="color:#bfbab0;">
         call </span><span style="color:#f07178;">histdel</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&#39;search&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#f29718;">-1</span><span style="color:#bfbab0;">)
@@ -176,6 +178,8 @@ endfun
 </span><span style="color:#f07178;">autocmd</span><span style="color:#bfbab0;"> BufWritePre content/</span><span style="color:#ff7733;">*.</span><span style="color:#bfbab0;">md call </span><span style="color:#f07178;">BlogPostModified</span><span style="color:#bfbab0;">()
 </span></code></pre>
 <p>Done and I never have to worry about that in my life. <em>Until the script fails...</em></p>
+<h2 id="result">Result</h2>
+<p><img src="/img/first_post.gif" alt="first_post_gif" /></p>
 
         
       </div>
