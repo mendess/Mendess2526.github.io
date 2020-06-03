@@ -71,24 +71,29 @@ let l:now = strftime('%F') " Get the current date
 ```
 
 With every thing ready it was just a matter of adapting the original find and
-replace.
+replace, to use the correct the correct start and end lines, `l:st` and `l:end`,
+as well as the correct pattern.
 ```vim
-keepjumps exe st . ',' . end . 's/^title =.*/title = "' . l:title . '"/'
-keepjumps exe st . ',' . end . 's/^date =.*/date = ' . l:now . '/'
+keepjumps exe l:st . ',' . l:end . 's/^title =.*/title = "' . l:title . '"/'
+keepjumps exe l:st . ',' . l:end . 's/^date =.*/date = ' . l:now . '/'
 ```
 
 The only other thing left to do was handle the obvious error. There might not be
 any `+++` yet when I save, if I forget to add them (which I will) and for that I
-just had to insert a check and create the boiler plate.
+just had to insert a check and create the boiler plate. This also gets around
+the problem of there being random `+++` sequences in the article itself, like
+this one does.
 
 ```vim
-if l:st == 0
+if l:st != 1 " front matter must be at line 1
     call append(0, ['+++',
                 \ 'title =',
                 \ 'date = ',
                 \ '#[extra]',
                 \ '#background = ""',
                 \ '+++'])
+    let l:st = 1  " I hard code these so that the find and replace
+    let l:end = 6 " can find this zone.
 endif
 ```
 
@@ -100,21 +105,23 @@ function! BlogPostModified()
         let l:save_cursor = getpos(".")
         call cursor(1, 1)
         let l:st = search('+++', 'c')
-        if l:st == 0
+        let l:end = search('+++')
+        let l:title_line = search('^#[^#]')
+        let l:title = getline(l:title_line)
+        let l:title = substitute(l:title, "^#[ ]*", "", "")
+        let l:now = strftime('%F')
+        if l:st != 1
             call append(0, ['+++',
                         \ 'title =',
                         \ 'date = ',
                         \ '#[extra]',
                         \ '#background = ""',
                         \ '+++'])
+            let l:st = 1
+            let l:end = 6
         endif
-        let l:end = search('+++')
-        let l:title_line = search('^#[^#]')
-        let l:title = getline(l:title_line)
-        let l:title = substitute(l:title, "^#[ ]*", "", "")
-        let l:now = strftime('%F')
-        keepjumps exe st . ',' . end . 's/^title =.*/title = "' . l:title . '"/'
-        keepjumps exe st . ',' . end . 's/^date =.*/date = ' . l:now . '/'
+        keepjumps exe l:st . ',' . l:end . 's/^title =.*/title = "' . l:title . '"/'
+        keepjumps exe l:st . ',' . l:end . 's/^date =.*/date = ' . l:now . '/'
         call histdel('search', -1)
         call setpos('.', save_cursor)
     endif
@@ -123,5 +130,9 @@ autocmd BufWritePre content/*.md call BlogPostModified()
 ```
 
 Done and I never have to worry about that in my life. _Until the script fails..._
+
+## Result
+
+![first_post_gif](/img/first_post.gif)
 
 [vimAutoDate]: https://vim.fandom.com/wiki/Insert_current_date_or_time
