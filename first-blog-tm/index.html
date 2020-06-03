@@ -116,7 +116,7 @@ fetch these.</p>
 </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:st = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">, </span><span style="color:#c2d94c;">&#39;c&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Find the line where the first +++ appears
 </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:end = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Find the second +++
 </span></code></pre>
-<p>The I just needed to get the current title and current date.</p>
+<p>Then I just needed to get the current title and current date.</p>
 <pre style="background-color:#0f1419;">
 <code><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span style="color:#bfbab0;">) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the title line
 </span><span style="color:#f07178;">let </span><span style="color:#bfbab0;">l:title = </span><span style="color:#f07178;">getline</span><span style="color:#bfbab0;">(l:title_line) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the text at that line
