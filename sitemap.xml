@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://git.mendess.xyz/</loc>
+    </url>
+    <url>
+        <loc>https://git.mendess.xyz/about/</loc>
+    </url>
+    <url>
+        <loc>https://git.mendess.xyz/first-blog-tm/</loc>
+        <lastmod>2020-02-06</lastmod>
+    </url>
+    <url>
+        <loc>https://git.mendess.xyz/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://git.mendess.xyz/pages/</loc>
+    </url>
+    <url>
+        <loc>https://git.mendess.xyz/projects/</loc>
+    </url>
+</urlset>
