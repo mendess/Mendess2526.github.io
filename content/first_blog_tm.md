@@ -61,7 +61,7 @@ let l:st = search('+++', 'c') " Find the line where the first +++ appears
 let l:end = search('+++') " Find the second +++
 ```
 
-The I just needed to get the current title and current date.
+Then I just needed to get the current title and current date.
 
 ```vim
 let l:title_line = search('^#[^#]') " Get the title line
