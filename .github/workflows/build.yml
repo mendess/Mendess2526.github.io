@@ -25,7 +25,9 @@ jobs:
                 gunzip zola*gz
                 tar xf zola*tar
             - name: Build
-              run: ./zola build
+              run: |
+                  ./zola build
+                  rm -rf themes/clean-blog/
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
