@@ -83,12 +83,12 @@ just had to insert a check and create the boiler plate.
 
 ```vim
 if l:st == 0
-call append(0, ['+++',
-            \ 'title =',
-            \ 'date = ',
-            \ '#[extra]',
-            \ '#background = ""',
-            \ '+++'])
+    call append(0, ['+++',
+                \ 'title =',
+                \ 'date = ',
+                \ '#[extra]',
+                \ '#background = ""',
+                \ '+++'])
 endif
 ```
 
