@@ -7,10 +7,10 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="https://git.mendess.xyz/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Wed, 03 Jun 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Thu, 04 Jun 2020 00:00:00 +0000</lastBuildDate>
         <item>
             <title>First Post ™</title>
-            <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
+            <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
             <link>https://git.mendess.xyz/first-blog-tm/</link>
             <guid>https://git.mendess.xyz/first-blog-tm/</guid>
             <description>&lt;h1 id=&quot;first-post-tm&quot;&gt;First Post ™&lt;&#x2F;h1&gt;
@@ -121,7 +121,7 @@ endfun
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Done and I never have to worry about that in my life. &lt;em&gt;Until the script fails...&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
-&lt;p&gt;&lt;img src=&quot;&#x2F;img&#x2F;first_post.gif&quot; alt=&quot;first_post_gif&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;git.mendess.xyz&#x2F;first-blog-tm&#x2F;first_post.gif&quot; alt=&quot;first_post_gif&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 </description>
         </item>
     </channel>
