@@ -1,6 +1,6 @@
 +++
 title = "First Post ™"
-date = 2020-06-03
+date = 2020-06-04
 [extra]
 background = "linux.png"
 +++
@@ -133,6 +133,6 @@ Done and I never have to worry about that in my life. _Until the script fails...
 
 ## Result
 
-![first_post_gif](/img/first_post.gif)
+![first_post_gif](first_post.gif)
 
 [vimAutoDate]: https://vim.fandom.com/wiki/Insert_current_date_or_time
