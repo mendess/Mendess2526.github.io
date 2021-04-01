@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-      <title>~</title>
+      <title>~mendess</title>
         <link>https://git.mendess.xyz</link>
         <description></description>
         <generator>Zola</generator>
@@ -11,8 +11,8 @@
         <item>
             <title>First Post ™</title>
             <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
-            <link>https://git.mendess.xyz/first-blog-tm/</link>
-            <guid>https://git.mendess.xyz/first-blog-tm/</guid>
+            <link>https://git.mendess.xyz/first-post-tm/</link>
+            <guid>https://git.mendess.xyz/first-post-tm/</guid>
             <description>&lt;h1 id=&quot;first-post-tm&quot;&gt;First Post ™&lt;&#x2F;h1&gt;
 &lt;p&gt;Test post don&#x27;t upvote.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;vim-bros&quot;&gt;Vim bros&lt;&#x2F;h2&gt;
@@ -121,7 +121,7 @@ endfun
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Done and I never have to worry about that in my life. &lt;em&gt;Until the script fails...&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;git.mendess.xyz&#x2F;first-blog-tm&#x2F;first_post.gif&quot; alt=&quot;first_post_gif&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;git.mendess.xyz&#x2F;first-post-tm&#x2F;first_post.gif&quot; alt=&quot;first_post_gif&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 </description>
         </item>
     </channel>
