@@ -22,7 +22,7 @@ taxonomies = [
     {name = "tags", rss = true, paginate_by=5},
 ]
 
-title = "~"
+title = "~mendess"
 
 [extra]
 # Put all your custom variables here
