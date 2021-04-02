@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>~mendess</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;git.mendess.xyz&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="https://git.mendess.xyz/index.html">~mendess</a>
+      <div>
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;projects">Projects</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;git.mendess.xyz&#x2F;img&#x2F;go-doesnt-have-tuples.png')">
+
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>Go doesn&#x27;t have tuples</h1>
+          <span class="meta"> 2 April 2021 </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-10 mx-auto">
+        <h1 id="go-doesn-t-have-tuples">Go doesn't have tuples</h1>
+<p>If you've programmed Go for more than 2 seconds you might think &quot;this makes no
+sense, of course Go has tuples, look at this valid go function&quot;</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">the_number_two</span><span style="color:#bfbab0;">() (</span><span style="font-style:italic;color:#39bae6;">string</span><span style="color:#bfbab0cc;">, </span><span style="font-style:italic;color:#39bae6;">int</span><span style="color:#bfbab0;">) {
+    </span><span style="color:#ff7733;">return </span><span style="color:#c2d94c;">&quot;the number two&quot;</span><span style="color:#bfbab0cc;">, </span><span style="color:#f29718;">2
+</span><span style="color:#bfbab0;">}
+</span></code></pre>
+<blockquote>
+<p>For those that haven't programmed Go, this is a <code>func</code>tion called
+<code>the_number_two</code> that returns a <code>string</code> <strong>and</strong> an <code>int</code></p>
+</blockquote>
+<p>Now that looks like a tuple, and I have no problems with any part of this, on
+it's own it's fine and a good thing. Avoids the whole mess that are <em>out
+parameters</em> and generally makes code more readable.</p>
+<h2 id="function-chaining">Function chaining</h2>
+<p>Function chaining (also known as function composition over at the functional
+side) is a very common pattern. Usually it looks something like this:</p>
+<pre style="background-color:#0f1419;">
+<code class="language-py" data-lang="py"><span style="color:#ffb454;">func1</span><span style="color:#bfbab0;">(</span><span style="color:#ffb454;">func2</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;hi&quot;</span><span style="color:#bfbab0;">)</span><span style="color:#bfbab0cc;">, </span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+</span></code></pre>
+<p>Here <code>func2</code> takes a string a returns something, let's say it returns the length
+of the string</p>
+<pre style="background-color:#0f1419;">
+<code class="language-py" data-lang="py"><span style="color:#ffb454;">func1</span><span style="color:#bfbab0;">(</span><span style="color:#f07178;">len</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;hi&quot;</span><span style="color:#bfbab0;">)</span><span style="color:#bfbab0cc;">, </span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+</span></code></pre>
+<p>From this we can immediately infer that <code>func1</code>, whatever it does, takes two
+parameters, both of them numbers. Simple stuff.</p>
+<p>It is a general assumption that, if a function returns <code>some type</code> we can write
+a function that can take <code>some type</code> as a parameter and thus allow for function
+chaining.</p>
+<p><em>But not with Go.</em></p>
+<p>In Go there are no tuples, it's just not a thing. Multiple return values are
+just that, multiple return values.</p>
+<p>As such it's impossible to write a function such that this is a valid
+expression.</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ffb454;">impossible</span><span style="color:#bfbab0;">(</span><span style="color:#ffb454;">the_number_two</span><span style="color:#bfbab0;">())
+</span></code></pre><h2 id="who-cares">Who cares?</h2>
+<p>To me that simple fact is bad on it's own, but let me contextualise that in the
+language.</p>
+<h3 id="error-handling">Error handling</h3>
+<p>Another (in)famous feature of Go is it's error handling. It's return value based
+instead of exception based (I think this is a good thing, I personally dislike
+exceptions).</p>
+<p>How does it look like? Well simple, a function that can fail returns two values,
+the good value and the error value.</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">Open</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">name </span><span style="font-style:italic;color:#39bae6;">string</span><span style="color:#bfbab0;">) (</span><span style="color:#f29668;">*</span><span style="color:#ff7733;">File</span><span style="color:#bfbab0cc;">, </span><span style="font-style:italic;color:#39bae6;">error</span><span style="color:#bfbab0;">)
+</span></code></pre>
+<p>As an example let's try writing a simple program that reads a file, parses it's
+contents as a number and prints the number.</p>
+<p>First we need to open a file (Import statements will be omitted).</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">main</span><span style="color:#bfbab0;">() {
+    file</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#bfbab0;">os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Open</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;the_answer&quot;</span><span style="color:#bfbab0;">)
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+}
+</span></code></pre>
+<p>As you can see there's this nice syntax that let's you capture both return
+values, and we then check if an error occurred, and, in this case we print it
+and terminate the program.</p>
+<p>Now let's write a function that reads a string from the file</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">read</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">file </span><span style="color:#f29668;">*</span><span style="color:#bfbab0;">os</span><span style="color:#f29668;">.</span><span style="color:#ff7733;">File</span><span style="color:#bfbab0;">) (</span><span style="font-style:italic;color:#39bae6;">string</span><span style="color:#bfbab0cc;">, </span><span style="font-style:italic;color:#39bae6;">error</span><span style="color:#bfbab0;">) {
+    buffer </span><span style="color:#f29668;">:= </span><span style="color:#f07178;">make</span><span style="color:#bfbab0;">([]</span><span style="font-style:italic;color:#39bae6;">byte</span><span style="color:#bfbab0cc;">, </span><span style="color:#f29718;">1024</span><span style="color:#bfbab0;">)
+    n</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#bfbab0;">file</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Read</span><span style="color:#bfbab0;">(buffer)
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        </span><span style="color:#ff7733;">return </span><span style="color:#c2d94c;">&quot;&quot;</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="font-style:italic;color:#5c6773;">// yes, I have to return an empty string here
+    </span><span style="color:#bfbab0;">}
+    </span><span style="color:#ff7733;">return </span><span style="font-style:italic;color:#39bae6;">string</span><span style="color:#bfbab0;">(buffer[</span><span style="color:#bfbab0cc;">:</span><span style="color:#bfbab0;">n])</span><span style="color:#bfbab0cc;">, </span><span style="color:#f29718;">nil </span><span style="font-style:italic;color:#5c6773;">// err is nil means there was no error
+</span><span style="color:#bfbab0;">}
+</span></code></pre>
+<p>And let's write one that parses the string</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">parse</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">s </span><span style="font-style:italic;color:#39bae6;">string</span><span style="color:#bfbab0;">) (</span><span style="font-style:italic;color:#39bae6;">int</span><span style="color:#bfbab0cc;">, </span><span style="font-style:italic;color:#39bae6;">error</span><span style="color:#bfbab0;">) {
+    </span><span style="color:#ff7733;">return </span><span style="color:#bfbab0;">strconv</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Atoi</span><span style="color:#bfbab0;">(strings</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">TrimSpace</span><span style="color:#bfbab0;">(s))
+}
+</span></code></pre>
+<p>Interestingly we can just return here, despite the fact that we can't chain
+functions we can return the multiple values of a function. I can't really put my
+finger on it but to me this is inconsistent.</p>
+<p>And finally let's put it all together in <code>main</code>.</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">main</span><span style="color:#bfbab0;">() {
+    file</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#bfbab0;">os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Open</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;the_answer&quot;</span><span style="color:#bfbab0;">)
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+    c</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">read</span><span style="color:#bfbab0;">(file)
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+    v</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">parse</span><span style="color:#bfbab0;">(c)
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+    fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;The number is &quot;</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">v)
+}
+</span></code></pre>
+<p><em>Ooof</em> that's a lot of repeated code!</p>
+<p>And another pain point of this is that it doesn't force you to check the error
+and even if you do it won't prevent you from accessing the meaningless &quot;good&quot;
+value. In fact, it's so easy to miss, the first time I wrote this program the
+file had a non number in it and because I forgot to <code>os.Exit</code> inside the <code>if</code>s
+the program read <code>0</code> from <code>v</code>. A meaningless default and wrong value.</p>
+<p>If there was a way to chain functions like this, assuming the error propagates
+wherever it happens.</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">main</span><span style="color:#bfbab0;">() {
+    v</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">parse</span><span style="color:#bfbab0;">(</span><span style="color:#ffb454;">read</span><span style="color:#bfbab0;">(os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Open</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;the_answer&quot;</span><span style="color:#bfbab0;">)))
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+}
+</span></code></pre>
+<p>This program would</p>
+<ul>
+<li>Have the same behaviour</li>
+<li>Reduce the amount of times you can forget to check</li>
+<li>Be much clearer on what it does.</li>
+</ul>
+<p>But having this kind of error propagation usually involves either exceptions or
+complex control flow features, and both are against Go's philosophy of simplicity
+first.</p>
+<p>Now another thing a programmer usually does when there is too much repeated code
+is to try to abstract it away into a function.</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">check_err</span><span style="color:#bfbab0;">(???) (?) {
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+}
+
+</span><span style="color:#ff7733;">func </span><span style="color:#ffb454;">main</span><span style="color:#bfbab0;">() {
+    file </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">check_err</span><span style="color:#bfbab0;">(os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Open</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;the_answer&quot;</span><span style="color:#bfbab0;">))
+    c </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">check_err</span><span style="color:#bfbab0;">(</span><span style="color:#ffb454;">read</span><span style="color:#bfbab0;">(file))
+    v </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">parse</span><span style="color:#bfbab0;">(c)
+    fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;The number is &quot;</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">v)
+}
+</span></code></pre>
+<p>Once again, this isn't possible because we can't take a &quot;tuple&quot; as a parameter.</p>
+<p>Furthermore, even if we could, we couldn't make this function because Go doesn't
+have generics, and as such, there would be no way to express that the non error
+type taken would be the type returned. In other words, you can't implement <code>id</code>.</p>
+<p>The only thing we can do is this:</p>
+<pre style="background-color:#0f1419;">
+<code class="language-go" data-lang="go"><span style="color:#ff7733;">func </span><span style="color:#ffb454;">handle_err</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">err </span><span style="font-style:italic;color:#39bae6;">error</span><span style="color:#bfbab0;">) {
+    </span><span style="color:#ff7733;">if </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">!= </span><span style="color:#f29718;">nil </span><span style="color:#bfbab0;">{
+        fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(err)
+        os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Exit</span><span style="color:#bfbab0;">(</span><span style="color:#f29718;">1</span><span style="color:#bfbab0;">)
+    }
+}
+
+</span><span style="color:#ff7733;">func </span><span style="color:#ffb454;">main</span><span style="color:#bfbab0;">() {
+    file</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#bfbab0;">os</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Open</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;the_answer&quot;</span><span style="color:#bfbab0;">)
+    </span><span style="color:#ffb454;">handle_err</span><span style="color:#bfbab0;">(err)</span><span style="color:#bfbab0cc;">;
+
+    </span><span style="color:#bfbab0;">c</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">read</span><span style="color:#bfbab0;">(file)
+    </span><span style="color:#ffb454;">handle_err</span><span style="color:#bfbab0;">(err)</span><span style="color:#bfbab0cc;">;
+
+    </span><span style="color:#bfbab0;">v</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">err </span><span style="color:#f29668;">:= </span><span style="color:#ffb454;">parse</span><span style="color:#bfbab0;">(c)
+    </span><span style="color:#ffb454;">handle_err</span><span style="color:#bfbab0;">(err)</span><span style="color:#bfbab0cc;">;
+
+    </span><span style="color:#bfbab0;">fmt</span><span style="color:#f29668;">.</span><span style="color:#ffb454;">Println</span><span style="color:#bfbab0;">(</span><span style="color:#c2d94c;">&quot;The number is &quot;</span><span style="color:#bfbab0cc;">, </span><span style="color:#bfbab0;">v)
+}
+</span></code></pre>
+<p>Which is <em>ok</em> but far from a solution as good as any of the previous ones.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Go as a lot going for it, it's simplicity is nice as a baseline, but, like
+everything, it's bad or even toxic when taken to an extreme. In it's quest to be
+simple go ends up making writing correct code error prone through it's
+repetitiveness.</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;tags&#x2F;go&#x2F;">#go</a>
+            
+            <a href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;tags&#x2F;rant&#x2F;">#rant</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;mendess">
+                <i class="fa-stack fa-lg fab fa-github"></i>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;git.mendess.xyz&#x2F;rss.xml">
+                <i class="fa-stack fa-lg fas fa-rss"></i>
+              </a>
+            </li>
+            
+            
+          </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -7,7 +7,195 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="https://git.mendess.xyz/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Thu, 04 Jun 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Fri, 02 Apr 2021 00:00:00 +0000</lastBuildDate>
+        <item>
+            <title>Go doesn&#x27;t have tuples</title>
+            <pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
+            <link>https://git.mendess.xyz/go-doesnt-have-tuples/</link>
+            <guid>https://git.mendess.xyz/go-doesnt-have-tuples/</guid>
+            <description>&lt;h1 id=&quot;go-doesn-t-have-tuples&quot;&gt;Go doesn&#x27;t have tuples&lt;&#x2F;h1&gt;
+&lt;p&gt;If you&#x27;ve programmed Go for more than 2 seconds you might think &amp;quot;this makes no
+sense, of course Go has tuples, look at this valid go function&amp;quot;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;the_number_two&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() (&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the number two&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;2
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For those that haven&#x27;t programmed Go, this is a &lt;code&gt;func&lt;&#x2F;code&gt;tion called
+&lt;code&gt;the_number_two&lt;&#x2F;code&gt; that returns a &lt;code&gt;string&lt;&#x2F;code&gt; &lt;strong&gt;and&lt;&#x2F;strong&gt; an &lt;code&gt;int&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Now that looks like a tuple, and I have no problems with any part of this, on
+it&#x27;s own it&#x27;s fine and a good thing. Avoids the whole mess that are &lt;em&gt;out
+parameters&lt;&#x2F;em&gt; and generally makes code more readable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;function-chaining&quot;&gt;Function chaining&lt;&#x2F;h2&gt;
+&lt;p&gt;Function chaining (also known as function composition over at the functional
+side) is a very common pattern. Usually it looks something like this:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;func1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;func2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;hi&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here &lt;code&gt;func2&lt;&#x2F;code&gt; takes a string a returns something, let&#x27;s say it returns the length
+of the string&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;func1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;hi&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;From this we can immediately infer that &lt;code&gt;func1&lt;&#x2F;code&gt;, whatever it does, takes two
+parameters, both of them numbers. Simple stuff.&lt;&#x2F;p&gt;
+&lt;p&gt;It is a general assumption that, if a function returns &lt;code&gt;some type&lt;&#x2F;code&gt; we can write
+a function that can take &lt;code&gt;some type&lt;&#x2F;code&gt; as a parameter and thus allow for function
+chaining.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;But not with Go.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In Go there are no tuples, it&#x27;s just not a thing. Multiple return values are
+just that, multiple return values.&lt;&#x2F;p&gt;
+&lt;p&gt;As such it&#x27;s impossible to write a function such that this is a valid
+expression.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;impossible&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;the_number_two&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;())
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;who-cares&quot;&gt;Who cares?&lt;&#x2F;h2&gt;
+&lt;p&gt;To me that simple fact is bad on it&#x27;s own, but let me contextualise that in the
+language.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;error-handling&quot;&gt;Error handling&lt;&#x2F;h3&gt;
+&lt;p&gt;Another (in)famous feature of Go is it&#x27;s error handling. It&#x27;s return value based
+instead of exception based (I think this is a good thing, I personally dislike
+exceptions).&lt;&#x2F;p&gt;
+&lt;p&gt;How does it look like? Well simple, a function that can fail returns two values,
+the good value and the error value.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;File&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As an example let&#x27;s try writing a simple program that reads a file, parses it&#x27;s
+contents as a number and prints the number.&lt;&#x2F;p&gt;
+&lt;p&gt;First we need to open a file (Import statements will be omitted).&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
+    file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see there&#x27;s this nice syntax that let&#x27;s you capture both return
+values, and we then check if an error occurred, and, in this case we print it
+and terminate the program.&lt;&#x2F;p&gt;
+&lt;p&gt;Now let&#x27;s write a function that reads a string from the file&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;file &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;File&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) (&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
+    buffer &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;make&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;([]&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;byte&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1024&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(buffer)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;&#x2F; yes, I have to return an empty string here
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;}
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(buffer[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;n])&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;&#x2F; err is nil means there was no error
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And let&#x27;s write one that parses the string&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;s &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) (&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;strconv&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Atoi&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(strings&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;TrimSpace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(s))
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Interestingly we can just return here, despite the fact that we can&#x27;t chain
+functions we can return the multiple values of a function. I can&#x27;t really put my
+finger on it but to me this is inconsistent.&lt;&#x2F;p&gt;
+&lt;p&gt;And finally let&#x27;s put it all together in &lt;code&gt;main&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
+    file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+    c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(file)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+    v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(c)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+    fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;The number is &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v)
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;Ooof&lt;&#x2F;em&gt; that&#x27;s a lot of repeated code!&lt;&#x2F;p&gt;
+&lt;p&gt;And another pain point of this is that it doesn&#x27;t force you to check the error
+and even if you do it won&#x27;t prevent you from accessing the meaningless &amp;quot;good&amp;quot;
+value. In fact, it&#x27;s so easy to miss, the first time I wrote this program the
+file had a non number in it and because I forgot to &lt;code&gt;os.Exit&lt;&#x2F;code&gt; inside the &lt;code&gt;if&lt;&#x2F;code&gt;s
+the program read &lt;code&gt;0&lt;&#x2F;code&gt; from &lt;code&gt;v&lt;&#x2F;code&gt;. A meaningless default and wrong value.&lt;&#x2F;p&gt;
+&lt;p&gt;If there was a way to chain functions like this, assuming the error propagates
+wherever it happens.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
+    v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)))
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This program would&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have the same behaviour&lt;&#x2F;li&gt;
+&lt;li&gt;Reduce the amount of times you can forget to check&lt;&#x2F;li&gt;
+&lt;li&gt;Be much clearer on what it does.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;But having this kind of error propagation usually involves either exceptions or
+complex control flow features, and both are against Go&#x27;s philosophy of simplicity
+first.&lt;&#x2F;p&gt;
+&lt;p&gt;Now another thing a programmer usually does when there is too much repeated code
+is to try to abstract it away into a function.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;check_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(???) (?) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
+    file &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;check_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;))
+    c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;check_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(file))
+    v &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(c)
+    fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;The number is &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v)
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once again, this isn&#x27;t possible because we can&#x27;t take a &amp;quot;tuple&amp;quot; as a parameter.&lt;&#x2F;p&gt;
+&lt;p&gt;Furthermore, even if we could, we couldn&#x27;t make this function because Go doesn&#x27;t
+have generics, and as such, there would be no way to express that the non error
+type taken would be the type returned. In other words, you can&#x27;t implement &lt;code&gt;id&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The only thing we can do is this:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
+&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
+        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
+        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    }
+}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
+    file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;;
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(file)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;;
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(c)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;;
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;The number is &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v)
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Which is &lt;em&gt;ok&lt;&#x2F;em&gt; but far from a solution as good as any of the previous ones.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Go as a lot going for it, it&#x27;s simplicity is nice as a baseline, but, like
+everything, it&#x27;s bad or even toxic when taken to an extreme. In it&#x27;s quest to be
+simple go ends up making writing correct code error prone through it&#x27;s
+repetitiveness.&lt;&#x2F;p&gt;
+</description>
+        </item>
         <item>
             <title>First Post ™</title>
             <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
