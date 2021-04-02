@@ -55,7 +55,7 @@ expression.&lt;&#x2F;p&gt;
 &lt;p&gt;To me that simple fact is bad on it&#x27;s own, but let me contextualise that in the
 language.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;error-handling&quot;&gt;Error handling&lt;&#x2F;h3&gt;
-&lt;p&gt;Another (in)famous feature of Go is it&#x27;s error handling. It&#x27;s return value based
+&lt;p&gt;Another (in)famous feature of Go is its error handling. It&#x27;s return value based
 instead of exception based (I think this is a good thing, I personally dislike
 exceptions).&lt;&#x2F;p&gt;
 &lt;p&gt;How does it look like? Well simple, a function that can fail returns two values,
