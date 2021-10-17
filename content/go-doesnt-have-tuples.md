@@ -34,7 +34,7 @@ side) is a very common pattern. Usually it looks something like this:
 func1(func2("hi"), 1)
 ```
 
-Here `func2` takes a string a returns something, let's say it returns the length
+Here `func2` takes a string and returns something, let's say it returns the length
 of the string
 
 ```py
