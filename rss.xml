@@ -16,11 +16,10 @@
             <description>&lt;h1 id=&quot;go-doesn-t-have-tuples&quot;&gt;Go doesn&#x27;t have tuples&lt;&#x2F;h1&gt;
 &lt;p&gt;If you&#x27;ve programmed Go for more than 2 seconds you might think &amp;quot;this makes no
 sense, of course Go has tuples, look at this valid go function&amp;quot;&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;the_number_two&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() (&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the number two&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;2
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func the_number_two() (string, int) {
+    return &amp;quot;the number two&amp;quot;, 2
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;For those that haven&#x27;t programmed Go, this is a &lt;code&gt;func&lt;&#x2F;code&gt;tion called
 &lt;code&gt;the_number_two&lt;&#x2F;code&gt; that returns a &lt;code&gt;string&lt;&#x2F;code&gt; &lt;strong&gt;and&lt;&#x2F;strong&gt; an &lt;code&gt;int&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
@@ -31,14 +30,12 @@ parameters&lt;&#x2F;em&gt; and generally makes code more readable.&lt;&#x2F;p&gt
 &lt;h2 id=&quot;function-chaining&quot;&gt;Function chaining&lt;&#x2F;h2&gt;
 &lt;p&gt;Function chaining (also known as function composition over at the functional
 side) is a very common pattern. Usually it looks something like this:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;func1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;func2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;hi&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Here &lt;code&gt;func2&lt;&#x2F;code&gt; takes a string a returns something, let&#x27;s say it returns the length
+&lt;pre data-lang=&quot;py&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;func1(func2(&amp;quot;hi&amp;quot;), 1)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here &lt;code&gt;func2&lt;&#x2F;code&gt; takes a string and returns something, let&#x27;s say it returns the length
 of the string&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;func1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;hi&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;py&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;func1(len(&amp;quot;hi&amp;quot;), 1)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;From this we can immediately infer that &lt;code&gt;func1&lt;&#x2F;code&gt;, whatever it does, takes two
 parameters, both of them numbers. Simple stuff.&lt;&#x2F;p&gt;
 &lt;p&gt;It is a general assumption that, if a function returns &lt;code&gt;some type&lt;&#x2F;code&gt; we can write
@@ -49,9 +46,9 @@ chaining.&lt;&#x2F;p&gt;
 just that, multiple return values.&lt;&#x2F;p&gt;
 &lt;p&gt;As such it&#x27;s impossible to write a function such that this is a valid
 expression.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;impossible&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;the_number_two&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;())
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;who-cares&quot;&gt;Who cares?&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;impossible(the_number_two())
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;who-cares&quot;&gt;Who cares?&lt;&#x2F;h2&gt;
 &lt;p&gt;To me that simple fact is bad on it&#x27;s own, but let me contextualise that in the
 language.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;error-handling&quot;&gt;Error handling&lt;&#x2F;h3&gt;
@@ -60,65 +57,60 @@ instead of exception based (I think this is a good thing, I personally dislike
 exceptions).&lt;&#x2F;p&gt;
 &lt;p&gt;How does it look like? Well simple, a function that can fail returns two values,
 the good value and the error value.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;File&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func Open(name string) (*File, error)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;As an example let&#x27;s try writing a simple program that reads a file, parses it&#x27;s
 contents as a number and prints the number.&lt;&#x2F;p&gt;
 &lt;p&gt;First we need to open a file (Import statements will be omitted).&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
-    file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func main() {
+    file, err := os.Open(&amp;quot;the_answer&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
 }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;As you can see there&#x27;s this nice syntax that let&#x27;s you capture both return
 values, and we then check if an error occurred, and, in this case we print it
 and terminate the program.&lt;&#x2F;p&gt;
 &lt;p&gt;Now let&#x27;s write a function that reads a string from the file&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;file &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;File&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) (&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
-    buffer &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;make&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;([]&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;byte&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1024&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-    n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(buffer)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;&#x2F; yes, I have to return an empty string here
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;}
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(buffer[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;n])&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;&#x2F; err is nil means there was no error
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;And let&#x27;s write one that parses the string&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;s &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) (&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;strconv&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Atoi&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(strings&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;TrimSpace&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(s))
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func read(file *os.File) (string, error) {
+    buffer := make([]byte, 1024)
+    n, err := file.Read(buffer)
+    if err != nil {
+        return &amp;quot;&amp;quot;, err &amp;#x2F;&amp;#x2F; yes, I have to return an empty string here
+    }
+    return string(buffer[:n]), nil &amp;#x2F;&amp;#x2F; err is nil means there was no error
 }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And let&#x27;s write one that parses the string&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func parse(s string) (int, error) {
+    return strconv.Atoi(strings.TrimSpace(s))
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Interestingly we can just return here, despite the fact that we can&#x27;t chain
 functions we can return the multiple values of a function. I can&#x27;t really put my
 finger on it but to me this is inconsistent.&lt;&#x2F;p&gt;
 &lt;p&gt;And finally let&#x27;s put it all together in &lt;code&gt;main&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
-    file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func main() {
+    file, err := os.Open(&amp;quot;the_answer&amp;quot;)
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
-    c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(file)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    c, err := read(file)
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
-    v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(c)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+    v, err := parse(c)
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
-    fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;The number is &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v)
+    fmt.Println(&amp;quot;The number is &amp;quot;, v)
 }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;&lt;em&gt;Ooof&lt;&#x2F;em&gt; that&#x27;s a lot of repeated code!&lt;&#x2F;p&gt;
 &lt;p&gt;And another pain point of this is that it doesn&#x27;t force you to check the error
 and even if you do it won&#x27;t prevent you from accessing the meaningless &amp;quot;good&amp;quot;
@@ -127,15 +119,14 @@ file had a non number in it and because I forgot to &lt;code&gt;os.Exit&lt;&#x2F
 the program read &lt;code&gt;0&lt;&#x2F;code&gt; from &lt;code&gt;v&lt;&#x2F;code&gt;. A meaningless default and wrong value.&lt;&#x2F;p&gt;
 &lt;p&gt;If there was a way to chain functions like this, assuming the error propagates
 wherever it happens.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
-    v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)))
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func main() {
+    v, err := parse(read(os.Open(&amp;quot;the_answer&amp;quot;)))
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
 }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;This program would&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Have the same behaviour&lt;&#x2F;li&gt;
@@ -147,47 +138,45 @@ complex control flow features, and both are against Go&#x27;s philosophy of simp
 first.&lt;&#x2F;p&gt;
 &lt;p&gt;Now another thing a programmer usually does when there is too much repeated code
 is to try to abstract it away into a function.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;check_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(???) (?) {
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func check_err(???) (?) {
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
 }
 
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
-    file &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;check_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;))
-    c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;check_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(file))
-    v &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(c)
-    fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;The number is &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v)
+func main() {
+    file := check_err(os.Open(&amp;quot;the_answer&amp;quot;))
+    c := check_err(read(file))
+    v := parse(c)
+    fmt.Println(&amp;quot;The number is &amp;quot;, v)
 }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Once again, this isn&#x27;t possible because we can&#x27;t take a &amp;quot;tuple&amp;quot; as a parameter.&lt;&#x2F;p&gt;
 &lt;p&gt;Furthermore, even if we could, we couldn&#x27;t make this function because Go doesn&#x27;t
 have generics, and as such, there would be no way to express that the non error
 type taken would be the type returned. In other words, you can&#x27;t implement &lt;code&gt;id&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;The only thing we can do is this:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#39bae6;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) {
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;nil &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;{
-        fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)
-        os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Exit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
+&lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func handle_err(err error) {
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
     }
 }
 
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;() {
-    file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;os&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Open&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;the_answer&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;;
+func main() {
+    file, err := os.Open(&amp;quot;the_answer&amp;quot;)
+    handle_err(err);
 
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;read&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(file)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;;
+    c, err := read(file)
+    handle_err(err);
 
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;parse&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(c)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;handle_err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(err)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;;
+    v, err := parse(c)
+    handle_err(err);
 
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29668;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;The number is &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;v)
+    fmt.Println(&amp;quot;The number is &amp;quot;, v)
 }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Which is &lt;em&gt;ok&lt;&#x2F;em&gt; but far from a solution as good as any of the previous ones.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
 &lt;p&gt;Go as a lot going for it, it&#x27;s simplicity is nice as a baseline, but, like
@@ -209,104 +198,97 @@ repetitiveness.&lt;&#x2F;p&gt;
 &lt;p&gt;That&#x27;s annoying and easy to forget. Also if I update the post I need to change
 these too.&lt;&#x2F;p&gt;
 &lt;p&gt;Right now it has to look like this:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;+++
+&lt;pre&gt;&lt;code&gt;+++
 title = &amp;quot;First Post ™&amp;quot;
 date = 2020-06-03
 [extra]
 background = &amp;quot;linux.png&amp;quot;
 +++
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The background image has to be put there by hand since I have no way to deduce
 the image&#x27;s name, if there is one from the post.&lt;&#x2F;p&gt;
 &lt;p&gt;So I went searching and found &lt;a href=&quot;https:&#x2F;&#x2F;vim.fandom.com&#x2F;wiki&#x2F;Insert_current_date_or_time&quot;&gt;this&lt;&#x2F;a&gt;, under &amp;quot;Automatically update
 timestamps&amp;quot;.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; If buffer modified, update any &amp;#39;Last modified: &amp;#39; in the first 20 lines.
-&amp;quot; &amp;#39;Last modified: &amp;#39; can have up to 10 characters before (they are retained).
+&lt;pre data-lang=&quot;vim&quot; class=&quot;language-vim &quot;&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&amp;quot; If buffer modified, update any &amp;#x27;Last modified: &amp;#x27; in the first 20 lines.
+&amp;quot; &amp;#x27;Last modified: &amp;#x27; can have up to 10 characters before (they are retained).
 &amp;quot; Restores cursor and window position using save_cursor variable.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;! &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;LastModified&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;()
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;&amp;amp;modified
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt; save_cursor = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;getpos&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;.&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt; n = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;min&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;([&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;20&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;line&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;$&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)])
-    keepjumps &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;exe &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;1,&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt; n &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;s#^\(.\{,10}Last modified: \).*#\1&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;.
-          \ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;strftime&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;%a %b %d, %Y  %I:%M%p&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;#e&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;    call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;histdel&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;search&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-    call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;setpos&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, save_cursor)
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;endif
+function! LastModified()
+  if &amp;amp;modified
+    let save_cursor = getpos(&amp;quot;.&amp;quot;)
+    let n = min([20, line(&amp;quot;$&amp;quot;)])
+    keepjumps exe &amp;#x27;1,&amp;#x27; . n . &amp;#x27;s#^\(.\{,10}Last modified: \).*#\1&amp;#x27; .
+          \ strftime(&amp;#x27;%a %b %d, %Y  %I:%M%p&amp;#x27;) . &amp;#x27;#e&amp;#x27;
+    call histdel(&amp;#x27;search&amp;#x27;, -1)
+    call setpos(&amp;#x27;.&amp;#x27;, save_cursor)
+  endif
 endfun
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;autocmd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt; BufWritePre &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt; call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;LastModified&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;()
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+autocmd BufWritePre * call LastModified()
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Which is fine and all but it&#x27;s not good enough just yet, first it makes a guess
 the 20 is the number of lines that matter, in my case there is a better
 alternative, because the zone where this matters in inside &lt;code&gt;+++&lt;&#x2F;code&gt; I can just
 fetch these.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;cursor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Put the cursor at the top
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st = search(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;c&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Find the line where the first +++ appears
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end = search(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Find the second +++
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;vim&quot; class=&quot;language-vim &quot;&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;call cursor(1, 1) &amp;quot; Put the cursor at the top
+let l:st = search(&amp;#x27;+++&amp;#x27;, &amp;#x27;c&amp;#x27;) &amp;quot; Find the line where the first +++ appears
+let l:end = search(&amp;#x27;+++&amp;#x27;) &amp;quot; Find the second +++
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Then I just needed to get the current title and current date.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title_line = search(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;^#[^#]&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Get the title line
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;getline&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(l:title_line) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Get the text at that line
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;substitute&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(l:title, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;^#[ ]*&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Remove the # at the start
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:now = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;strftime&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;%F&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; Get the current date
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;vim&quot; class=&quot;language-vim &quot;&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;let l:title_line = search(&amp;#x27;^#[^#]&amp;#x27;) &amp;quot; Get the title line
+let l:title = getline(l:title_line) &amp;quot; Get the text at that line
+let l:title = substitute(l:title, &amp;quot;^#[ ]*&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;) &amp;quot; Remove the # at the start
+let l:now = strftime(&amp;#x27;%F&amp;#x27;) &amp;quot; Get the current date
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;With every thing ready it was just a matter of adapting the original find and
 replace, to use the correct start and end lines, &lt;code&gt;l:st&lt;&#x2F;code&gt; and &lt;code&gt;l:end&lt;&#x2F;code&gt;, as well as
 the correct pattern.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;keepjumps &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;exe &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;,&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;s&#x2F;^title =.*&#x2F;title = &amp;quot;&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;&amp;quot;&#x2F;&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;keepjumps &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;exe &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;,&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;s&#x2F;^date =.*&#x2F;date = &amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:now &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;&#x2F;&amp;#39;
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;vim&quot; class=&quot;language-vim &quot;&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;keepjumps exe l:st . &amp;#x27;,&amp;#x27; . l:end . &amp;#x27;s&amp;#x2F;^title =.*&amp;#x2F;title = &amp;quot;&amp;#x27; . l:title . &amp;#x27;&amp;quot;&amp;#x2F;&amp;#x27;
+keepjumps exe l:st . &amp;#x27;,&amp;#x27; . l:end . &amp;#x27;s&amp;#x2F;^date =.*&amp;#x2F;date = &amp;#x27; . l:now . &amp;#x27;&amp;#x2F;&amp;#x27;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The only other thing left to do was handle the obvious error. There might not be
 any &lt;code&gt;+++&lt;&#x2F;code&gt; yet when I save, if I forget to add them (which I will) and for that I
 just had to insert a check and create the boiler plate. This also gets around
 the problem of there being random &lt;code&gt;+++&lt;&#x2F;code&gt; sequences in the article itself, like
 this one does.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; front matter must be at line 1
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;    call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;append&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, [&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;title =&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;date = &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;#[extra]&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;#background = &amp;quot;&amp;quot;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;])
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; I hard code these so that the find and replace
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;6 &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&amp;quot; can find this zone.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;endif
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;vim&quot; class=&quot;language-vim &quot;&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;if l:st != 1 &amp;quot; front matter must be at line 1
+    call append(0, [&amp;#x27;+++&amp;#x27;,
+                \ &amp;#x27;title =&amp;#x27;,
+                \ &amp;#x27;date = &amp;#x27;,
+                \ &amp;#x27;#[extra]&amp;#x27;,
+                \ &amp;#x27;#background = &amp;quot;&amp;quot;&amp;#x27;,
+                \ &amp;#x27;+++&amp;#x27;])
+    let l:st = 1  &amp;quot; I hard code these so that the find and replace
+    let l:end = 6 &amp;quot; can find this zone.
+endif
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The final code looks like this:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#0f1419;&quot;&gt;
-&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;! &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffb454;&quot;&gt;BlogPostModified&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;()
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;&amp;amp;modified
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:save_cursor = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;getpos&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;.&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;cursor&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st = search(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;c&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end = search(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title_line = search(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;^#[^#]&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;getline&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(l:title_line)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;substitute&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(l:title, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;^#[ ]*&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:now = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;strftime&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;%F&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;            call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;append&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, [&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;title =&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;date = &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;#[extra]&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;#background = &amp;quot;&amp;quot;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;,
-                        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;+++&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;])
-            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;1
-            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;6
-        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;endif
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;        keepjumps &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;exe &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;,&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;s&#x2F;^title =.*&#x2F;title = &amp;quot;&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:title &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;&amp;quot;&#x2F;&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;        keepjumps &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;exe &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:st &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;,&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:end &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;s&#x2F;^date =.*&#x2F;date = &amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;l:now &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;&#x2F;&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;        call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;histdel&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;search&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;)
-        call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;setpos&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c2d94c;&quot;&gt;&amp;#39;.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;, save_cursor)
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;endif
+&lt;pre data-lang=&quot;vim&quot; class=&quot;language-vim &quot;&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;function! BlogPostModified()
+    if &amp;amp;modified
+        let l:save_cursor = getpos(&amp;quot;.&amp;quot;)
+        call cursor(1, 1)
+        let l:st = search(&amp;#x27;+++&amp;#x27;, &amp;#x27;c&amp;#x27;)
+        let l:end = search(&amp;#x27;+++&amp;#x27;)
+        let l:title_line = search(&amp;#x27;^#[^#]&amp;#x27;)
+        let l:title = getline(l:title_line)
+        let l:title = substitute(l:title, &amp;quot;^#[ ]*&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+        let l:now = strftime(&amp;#x27;%F&amp;#x27;)
+        if l:st != 1
+            call append(0, [&amp;#x27;+++&amp;#x27;,
+                        \ &amp;#x27;title =&amp;#x27;,
+                        \ &amp;#x27;date = &amp;#x27;,
+                        \ &amp;#x27;#[extra]&amp;#x27;,
+                        \ &amp;#x27;#background = &amp;quot;&amp;quot;&amp;#x27;,
+                        \ &amp;#x27;+++&amp;#x27;])
+            let l:st = 1
+            let l:end = 6
+        endif
+        keepjumps exe l:st . &amp;#x27;,&amp;#x27; . l:end . &amp;#x27;s&amp;#x2F;^title =.*&amp;#x2F;title = &amp;quot;&amp;#x27; . l:title . &amp;#x27;&amp;quot;&amp;#x2F;&amp;#x27;
+        keepjumps exe l:st . &amp;#x27;,&amp;#x27; . l:end . &amp;#x27;s&amp;#x2F;^date =.*&amp;#x2F;date = &amp;#x27; . l:now . &amp;#x27;&amp;#x2F;&amp;#x27;
+        call histdel(&amp;#x27;search&amp;#x27;, -1)
+        call setpos(&amp;#x27;.&amp;#x27;, save_cursor)
+    endif
 endfun
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;autocmd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt; BufWritePre content&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff7733;&quot;&gt;*.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;md call &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07178;&quot;&gt;BlogPostModified&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bfbab0;&quot;&gt;()
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+autocmd BufWritePre content&amp;#x2F;*.md call BlogPostModified()
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Done and I never have to worry about that in my life. &lt;em&gt;Until the script fails...&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;git.mendess.xyz&#x2F;first-post-tm&#x2F;first_post.gif&quot; alt=&quot;first_post_gif&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
