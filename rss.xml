@@ -179,7 +179,7 @@ func main() {
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Which is &lt;em&gt;ok&lt;&#x2F;em&gt; but far from a solution as good as any of the previous ones.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
-&lt;p&gt;Go as a lot going for it, it&#x27;s simplicity is nice as a baseline, but, like
+&lt;p&gt;Go has a lot going for it, it&#x27;s simplicity is nice as a baseline, but, like
 everything, it&#x27;s bad or even toxic when taken to an extreme. In it&#x27;s quest to be
 simple go ends up making writing correct code error prone through it&#x27;s
 repetitiveness.&lt;&#x2F;p&gt;
