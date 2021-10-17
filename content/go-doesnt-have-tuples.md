@@ -230,7 +230,7 @@ Which is _ok_ but far from a solution as good as any of the previous ones.
 
 ## Conclusion
 
-Go as a lot going for it, it's simplicity is nice as a baseline, but, like
+Go has a lot going for it, it's simplicity is nice as a baseline, but, like
 everything, it's bad or even toxic when taken to an extreme. In it's quest to be
 simple go ends up making writing correct code error prone through it's
 repetitiveness.
