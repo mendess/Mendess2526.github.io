@@ -2,18 +2,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
       <title>~mendess</title>
-        <link>https://git.mendess.xyz</link>
-        <description></description>
-        <generator>Zola</generator>
-        <language>en</language>
-        <atom:link href="https://git.mendess.xyz/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Fri, 02 Apr 2021 00:00:00 +0000</lastBuildDate>
-        <item>
-            <title>Go doesn&#x27;t have tuples</title>
-            <pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
-            <link>https://git.mendess.xyz/go-doesnt-have-tuples/</link>
-            <guid>https://git.mendess.xyz/go-doesnt-have-tuples/</guid>
-            <description>&lt;h1 id=&quot;go-doesn-t-have-tuples&quot;&gt;Go doesn&#x27;t have tuples&lt;&#x2F;h1&gt;
+      <link>https://git.mendess.xyz</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://git.mendess.xyz/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Fri, 02 Apr 2021 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Go doesn&#x27;t have tuples</title>
+          <pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://git.mendess.xyz/go-doesnt-have-tuples/</link>
+          <guid>https://git.mendess.xyz/go-doesnt-have-tuples/</guid>
+          <description>&lt;h1 id=&quot;go-doesn-t-have-tuples&quot;&gt;Go doesn&#x27;t have tuples&lt;&#x2F;h1&gt;
 &lt;p&gt;If you&#x27;ve programmed Go for more than 2 seconds you might think &amp;quot;this makes no
 sense, of course Go has tuples, look at this valid go function&amp;quot;&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;go&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;func the_number_two() (string, int) {
@@ -184,13 +185,14 @@ everything, it&#x27;s bad or even toxic when taken to an extreme. In it&#x27;s q
 simple go ends up making writing correct code error prone through it&#x27;s
 repetitiveness.&lt;&#x2F;p&gt;
 </description>
-        </item>
-        <item>
-            <title>First Post ™</title>
-            <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
-            <link>https://git.mendess.xyz/first-post-tm/</link>
-            <guid>https://git.mendess.xyz/first-post-tm/</guid>
-            <description>&lt;h1 id=&quot;first-post-tm&quot;&gt;First Post ™&lt;&#x2F;h1&gt;
+      </item>
+      <item>
+          <title>First Post ™</title>
+          <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://git.mendess.xyz/first-post-tm/</link>
+          <guid>https://git.mendess.xyz/first-post-tm/</guid>
+          <description>&lt;h1 id=&quot;first-post-tm&quot;&gt;First Post ™&lt;&#x2F;h1&gt;
 &lt;p&gt;Test post don&#x27;t upvote.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;vim-bros&quot;&gt;Vim bros&lt;&#x2F;h2&gt;
 &lt;p&gt;One thing I need to do for every post is put a title and a date on it in the
@@ -293,6 +295,6 @@ autocmd BufWritePre content&amp;#x2F;*.md call BlogPostModified()
 &lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;git.mendess.xyz&#x2F;first-post-tm&#x2F;first_post.gif&quot; alt=&quot;first_post_gif&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 </description>
-        </item>
+      </item>
     </channel>
 </rss>
