@@ -4,11 +4,6 @@ base_url = "https://git.mendess.xyz"
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
-highlight_theme = "ayu-dark"
-
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
@@ -35,3 +30,9 @@ clean_blog_menu = [
     {url = "$BASE_URL/projects", name = "Projects"},
     {url = "$BASE_URL/about", name = "About"},
 ]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "ayu-dark"
