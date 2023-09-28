@@ -12,9 +12,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
               with:
+                  submodules: recursive
                   persist-credentials: false
-            - name: Checkout submodules
-              uses: textbook/git-checkout-submodule-action@master
             - name: Download Zola
               run: |
                 curl https://api.github.com/repos/getzola/zola/releases/latest |
@@ -25,12 +24,9 @@ jobs:
                 gunzip zola*gz
                 tar xf zola*tar
             - name: Build
-              run: |
-                  ./zola build
-            - name: Deinit submodules
-              run: git submodule deinit --all
+              run: ./zola build
             - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@releases/v3
+              uses: JamesIves/github-pages-deploy-action@releases/v4
               with:
                   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                   BRANCH: master
