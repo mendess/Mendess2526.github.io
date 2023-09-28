@@ -79,97 +79,97 @@
 <p>That's annoying and easy to forget. Also if I update the post I need to change
 these too.</p>
 <p>Right now it has to look like this:</p>
-<pre><code>+++
-title = &quot;First Post ™&quot;
-date = 2020-06-03
-[extra]
-background = &quot;linux.png&quot;
-+++
-</code></pre>
+<pre style="background-color:#0f1419;color:#bfbab0;"><code><span>+++
+</span><span>title = &quot;First Post ™&quot;
+</span><span>date = 2020-06-03
+</span><span>[extra]
+</span><span>background = &quot;linux.png&quot;
+</span><span>+++
+</span></code></pre>
 <p>The background image has to be put there by hand since I have no way to deduce
 the image's name, if there is one from the post.</p>
 <p>So I went searching and found <a href="https://vim.fandom.com/wiki/Insert_current_date_or_time">this</a>, under &quot;Automatically update
 timestamps&quot;.</p>
-<pre data-lang="vim" class="language-vim "><code class="language-vim" data-lang="vim">&quot; If buffer modified, update any &#x27;Last modified: &#x27; in the first 20 lines.
-&quot; &#x27;Last modified: &#x27; can have up to 10 characters before (they are retained).
-&quot; Restores cursor and window position using save_cursor variable.
-function! LastModified()
-  if &amp;modified
-    let save_cursor = getpos(&quot;.&quot;)
-    let n = min([20, line(&quot;$&quot;)])
-    keepjumps exe &#x27;1,&#x27; . n . &#x27;s#^\(.\{,10}Last modified: \).*#\1&#x27; .
-          \ strftime(&#x27;%a %b %d, %Y  %I:%M%p&#x27;) . &#x27;#e&#x27;
-    call histdel(&#x27;search&#x27;, -1)
-    call setpos(&#x27;.&#x27;, save_cursor)
-  endif
-endfun
-autocmd BufWritePre * call LastModified()
-</code></pre>
+<pre data-lang="vim" style="background-color:#0f1419;color:#bfbab0;" class="language-vim "><code class="language-vim" data-lang="vim"><span style="font-style:italic;color:#5c6773;">&quot; If buffer modified, update any &#39;Last modified: &#39; in the first 20 lines.
+</span><span style="font-style:italic;color:#5c6773;">&quot; &#39;Last modified: &#39; can have up to 10 characters before (they are retained).
+</span><span style="font-style:italic;color:#5c6773;">&quot; Restores cursor and window position using save_cursor variable.
+</span><span style="color:#ff7733;">function</span><span>! </span><span style="color:#ffb454;">LastModified</span><span>()
+</span><span>  </span><span style="color:#ff7733;">if </span><span>&amp;modified
+</span><span>    </span><span style="color:#f07178;">let</span><span> save_cursor = </span><span style="color:#f07178;">getpos</span><span>(</span><span style="color:#c2d94c;">&quot;.&quot;</span><span>)
+</span><span>    </span><span style="color:#f07178;">let</span><span> n = </span><span style="color:#f07178;">min</span><span>([</span><span style="color:#f29718;">20</span><span>, </span><span style="color:#f07178;">line</span><span>(</span><span style="color:#c2d94c;">&quot;$&quot;</span><span>)])
+</span><span>    keepjumps </span><span style="color:#f07178;">exe </span><span style="color:#c2d94c;">&#39;1,&#39; </span><span style="color:#ff7733;">.</span><span> n </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s#^\(.\{,10}Last modified: \).*#\1&#39; </span><span style="color:#ff7733;">.
+</span><span>          </span><span style="color:#ff7733;">\ </span><span style="color:#f07178;">strftime</span><span>(</span><span style="color:#c2d94c;">&#39;%a %b %d, %Y  %I:%M%p&#39;</span><span>) </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;#e&#39;
+</span><span>    call </span><span style="color:#f07178;">histdel</span><span>(</span><span style="color:#c2d94c;">&#39;search&#39;</span><span>, </span><span style="color:#f29718;">-1</span><span>)
+</span><span>    call </span><span style="color:#f07178;">setpos</span><span>(</span><span style="color:#c2d94c;">&#39;.&#39;</span><span>, save_cursor)
+</span><span>  </span><span style="color:#ff7733;">endif
+</span><span style="color:#ff7733;">endfun
+</span><span style="color:#f07178;">autocmd</span><span> BufWritePre </span><span style="color:#ff7733;">*</span><span> call </span><span style="color:#f07178;">LastModified</span><span>()
+</span></code></pre>
 <p>Which is fine and all but it's not good enough just yet, first it makes a guess
 the 20 is the number of lines that matter, in my case there is a better
 alternative, because the zone where this matters in inside <code>+++</code> I can just
 fetch these.</p>
-<pre data-lang="vim" class="language-vim "><code class="language-vim" data-lang="vim">call cursor(1, 1) &quot; Put the cursor at the top
-let l:st = search(&#x27;+++&#x27;, &#x27;c&#x27;) &quot; Find the line where the first +++ appears
-let l:end = search(&#x27;+++&#x27;) &quot; Find the second +++
-</code></pre>
+<pre data-lang="vim" style="background-color:#0f1419;color:#bfbab0;" class="language-vim "><code class="language-vim" data-lang="vim"><span>call </span><span style="color:#f07178;">cursor</span><span>(</span><span style="color:#f29718;">1</span><span>, </span><span style="color:#f29718;">1</span><span>) </span><span style="font-style:italic;color:#5c6773;">&quot; Put the cursor at the top
+</span><span style="color:#f07178;">let </span><span>l:st = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>, </span><span style="color:#c2d94c;">&#39;c&#39;</span><span>) </span><span style="font-style:italic;color:#5c6773;">&quot; Find the line where the first +++ appears
+</span><span style="color:#f07178;">let </span><span>l:end = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>) </span><span style="font-style:italic;color:#5c6773;">&quot; Find the second +++
+</span></code></pre>
 <p>Then I just needed to get the current title and current date.</p>
-<pre data-lang="vim" class="language-vim "><code class="language-vim" data-lang="vim">let l:title_line = search(&#x27;^#[^#]&#x27;) &quot; Get the title line
-let l:title = getline(l:title_line) &quot; Get the text at that line
-let l:title = substitute(l:title, &quot;^#[ ]*&quot;, &quot;&quot;, &quot;&quot;) &quot; Remove the # at the start
-let l:now = strftime(&#x27;%F&#x27;) &quot; Get the current date
-</code></pre>
+<pre data-lang="vim" style="background-color:#0f1419;color:#bfbab0;" class="language-vim "><code class="language-vim" data-lang="vim"><span style="color:#f07178;">let </span><span>l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span>) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the title line
+</span><span style="color:#f07178;">let </span><span>l:title = </span><span style="color:#f07178;">getline</span><span>(l:title_line) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the text at that line
+</span><span style="color:#f07178;">let </span><span>l:title = </span><span style="color:#f07178;">substitute</span><span>(l:title, </span><span style="color:#c2d94c;">&quot;^#[ ]*&quot;</span><span>, </span><span style="color:#c2d94c;">&quot;&quot;</span><span>, </span><span style="color:#c2d94c;">&quot;&quot;</span><span>) </span><span style="font-style:italic;color:#5c6773;">&quot; Remove the # at the start
+</span><span style="color:#f07178;">let </span><span>l:now = </span><span style="color:#f07178;">strftime</span><span>(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span>) </span><span style="font-style:italic;color:#5c6773;">&quot; Get the current date
+</span></code></pre>
 <p>With every thing ready it was just a matter of adapting the original find and
 replace, to use the correct start and end lines, <code>l:st</code> and <code>l:end</code>, as well as
 the correct pattern.</p>
-<pre data-lang="vim" class="language-vim "><code class="language-vim" data-lang="vim">keepjumps exe l:st . &#x27;,&#x27; . l:end . &#x27;s&#x2F;^title =.*&#x2F;title = &quot;&#x27; . l:title . &#x27;&quot;&#x2F;&#x27;
-keepjumps exe l:st . &#x27;,&#x27; . l:end . &#x27;s&#x2F;^date =.*&#x2F;date = &#x27; . l:now . &#x27;&#x2F;&#x27;
-</code></pre>
+<pre data-lang="vim" style="background-color:#0f1419;color:#bfbab0;" class="language-vim "><code class="language-vim" data-lang="vim"><span>keepjumps </span><span style="color:#f07178;">exe </span><span>l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span>l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^title =.*/title = &quot;&#39; </span><span style="color:#ff7733;">. </span><span>l:title </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;&quot;/&#39;
+</span><span>keepjumps </span><span style="color:#f07178;">exe </span><span>l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span>l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^date =.*/date = &#39; </span><span style="color:#ff7733;">. </span><span>l:now </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;/&#39;
+</span></code></pre>
 <p>The only other thing left to do was handle the obvious error. There might not be
 any <code>+++</code> yet when I save, if I forget to add them (which I will) and for that I
 just had to insert a check and create the boiler plate. This also gets around
 the problem of there being random <code>+++</code> sequences in the article itself, like
 this one does.</p>
-<pre data-lang="vim" class="language-vim "><code class="language-vim" data-lang="vim">if l:st != 1 &quot; front matter must be at line 1
-    call append(0, [&#x27;+++&#x27;,
-                \ &#x27;title =&#x27;,
-                \ &#x27;date = &#x27;,
-                \ &#x27;#[extra]&#x27;,
-                \ &#x27;#background = &quot;&quot;&#x27;,
-                \ &#x27;+++&#x27;])
-    let l:st = 1  &quot; I hard code these so that the find and replace
-    let l:end = 6 &quot; can find this zone.
-endif
-</code></pre>
+<pre data-lang="vim" style="background-color:#0f1419;color:#bfbab0;" class="language-vim "><code class="language-vim" data-lang="vim"><span style="color:#ff7733;">if </span><span>l:st </span><span style="color:#ff7733;">!= </span><span style="color:#f29718;">1 </span><span style="font-style:italic;color:#5c6773;">&quot; front matter must be at line 1
+</span><span>    call </span><span style="color:#f07178;">append</span><span>(</span><span style="color:#f29718;">0</span><span>, [</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>,
+</span><span>                </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;title =&#39;</span><span>,
+</span><span>                </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;date = &#39;</span><span>,
+</span><span>                </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#[extra]&#39;</span><span>,
+</span><span>                </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#background = &quot;&quot;&#39;</span><span>,
+</span><span>                </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>])
+</span><span>    </span><span style="color:#f07178;">let </span><span>l:st = </span><span style="color:#f29718;">1  </span><span style="font-style:italic;color:#5c6773;">&quot; I hard code these so that the find and replace
+</span><span>    </span><span style="color:#f07178;">let </span><span>l:end = </span><span style="color:#f29718;">6 </span><span style="font-style:italic;color:#5c6773;">&quot; can find this zone.
+</span><span style="color:#ff7733;">endif
+</span></code></pre>
 <p>The final code looks like this:</p>
-<pre data-lang="vim" class="language-vim "><code class="language-vim" data-lang="vim">function! BlogPostModified()
-    if &amp;modified
-        let l:save_cursor = getpos(&quot;.&quot;)
-        call cursor(1, 1)
-        let l:st = search(&#x27;+++&#x27;, &#x27;c&#x27;)
-        let l:end = search(&#x27;+++&#x27;)
-        let l:title_line = search(&#x27;^#[^#]&#x27;)
-        let l:title = getline(l:title_line)
-        let l:title = substitute(l:title, &quot;^#[ ]*&quot;, &quot;&quot;, &quot;&quot;)
-        let l:now = strftime(&#x27;%F&#x27;)
-        if l:st != 1
-            call append(0, [&#x27;+++&#x27;,
-                        \ &#x27;title =&#x27;,
-                        \ &#x27;date = &#x27;,
-                        \ &#x27;#[extra]&#x27;,
-                        \ &#x27;#background = &quot;&quot;&#x27;,
-                        \ &#x27;+++&#x27;])
-            let l:st = 1
-            let l:end = 6
-        endif
-        keepjumps exe l:st . &#x27;,&#x27; . l:end . &#x27;s&#x2F;^title =.*&#x2F;title = &quot;&#x27; . l:title . &#x27;&quot;&#x2F;&#x27;
-        keepjumps exe l:st . &#x27;,&#x27; . l:end . &#x27;s&#x2F;^date =.*&#x2F;date = &#x27; . l:now . &#x27;&#x2F;&#x27;
-        call histdel(&#x27;search&#x27;, -1)
-        call setpos(&#x27;.&#x27;, save_cursor)
-    endif
-endfun
-autocmd BufWritePre content&#x2F;*.md call BlogPostModified()
-</code></pre>
+<pre data-lang="vim" style="background-color:#0f1419;color:#bfbab0;" class="language-vim "><code class="language-vim" data-lang="vim"><span style="color:#ff7733;">function</span><span>! </span><span style="color:#ffb454;">BlogPostModified</span><span>()
+</span><span>    </span><span style="color:#ff7733;">if </span><span>&amp;modified
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:save_cursor = </span><span style="color:#f07178;">getpos</span><span>(</span><span style="color:#c2d94c;">&quot;.&quot;</span><span>)
+</span><span>        call </span><span style="color:#f07178;">cursor</span><span>(</span><span style="color:#f29718;">1</span><span>, </span><span style="color:#f29718;">1</span><span>)
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:st = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>, </span><span style="color:#c2d94c;">&#39;c&#39;</span><span>)
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:end = search(</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>)
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:title_line = search(</span><span style="color:#c2d94c;">&#39;^#[^#]&#39;</span><span>)
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:title = </span><span style="color:#f07178;">getline</span><span>(l:title_line)
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:title = </span><span style="color:#f07178;">substitute</span><span>(l:title, </span><span style="color:#c2d94c;">&quot;^#[ ]*&quot;</span><span>, </span><span style="color:#c2d94c;">&quot;&quot;</span><span>, </span><span style="color:#c2d94c;">&quot;&quot;</span><span>)
+</span><span>        </span><span style="color:#f07178;">let </span><span>l:now = </span><span style="color:#f07178;">strftime</span><span>(</span><span style="color:#c2d94c;">&#39;%F&#39;</span><span>)
+</span><span>        </span><span style="color:#ff7733;">if </span><span>l:st </span><span style="color:#ff7733;">!= </span><span style="color:#f29718;">1
+</span><span>            call </span><span style="color:#f07178;">append</span><span>(</span><span style="color:#f29718;">0</span><span>, [</span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>,
+</span><span>                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;title =&#39;</span><span>,
+</span><span>                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;date = &#39;</span><span>,
+</span><span>                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#[extra]&#39;</span><span>,
+</span><span>                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;#background = &quot;&quot;&#39;</span><span>,
+</span><span>                        </span><span style="color:#ff7733;">\ </span><span style="color:#c2d94c;">&#39;+++&#39;</span><span>])
+</span><span>            </span><span style="color:#f07178;">let </span><span>l:st = </span><span style="color:#f29718;">1
+</span><span>            </span><span style="color:#f07178;">let </span><span>l:end = </span><span style="color:#f29718;">6
+</span><span>        </span><span style="color:#ff7733;">endif
+</span><span>        keepjumps </span><span style="color:#f07178;">exe </span><span>l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span>l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^title =.*/title = &quot;&#39; </span><span style="color:#ff7733;">. </span><span>l:title </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;&quot;/&#39;
+</span><span>        keepjumps </span><span style="color:#f07178;">exe </span><span>l:st </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;,&#39; </span><span style="color:#ff7733;">. </span><span>l:end </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;s/^date =.*/date = &#39; </span><span style="color:#ff7733;">. </span><span>l:now </span><span style="color:#ff7733;">. </span><span style="color:#c2d94c;">&#39;/&#39;
+</span><span>        call </span><span style="color:#f07178;">histdel</span><span>(</span><span style="color:#c2d94c;">&#39;search&#39;</span><span>, </span><span style="color:#f29718;">-1</span><span>)
+</span><span>        call </span><span style="color:#f07178;">setpos</span><span>(</span><span style="color:#c2d94c;">&#39;.&#39;</span><span>, save_cursor)
+</span><span>    </span><span style="color:#ff7733;">endif
+</span><span style="color:#ff7733;">endfun
+</span><span style="color:#f07178;">autocmd</span><span> BufWritePre content/</span><span style="color:#ff7733;">*.</span><span>md call </span><span style="color:#f07178;">BlogPostModified</span><span>()
+</span></code></pre>
 <p>Done and I never have to worry about that in my life. <em>Until the script fails...</em></p>
 <h2 id="result">Result</h2>
 <p><img src="https://git.mendess.xyz/first-post-tm/first_post.gif" alt="first_post_gif" /></p>
